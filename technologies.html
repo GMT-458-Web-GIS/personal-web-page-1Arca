@@ -1,28 +1,89 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teknolojiler | Arca Aldıkaçtı</title>
+  <title>Technologies | Arca Aldıkaçtı</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Kullandığım Teknolojiler</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="about.html">Hakkımda</a></li>
-        <li><a href="hobbies.html">Hobilerim</a></li>
-        <li><a href="technologies.html" class="active">Teknolojiler</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <h1>Arca Aldıkaçtı</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="hobbies.html">Hobbies</a></li>
+          <li><a href="technologies.html" class="active">Technologies</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main>
     <section>
-      <p>Python, QGIS, ERDAS Imagine, Git/GitHub ve web teknolojileriyle ilgileniyorum. Geomatik mühendisliğiyle bu teknolojileri birleştirmeyi hedefliyorum.</p>
-      <img src="images/deneme_tech.jpg" alt="Teknoloji Görseli" class="main-img">
+      <h2>Technologies I Use</h2>
+      <p>Various technologies and tools I use in geomatics engineering and personal projects. I continue to learn and develop these technologies.</p>
+      
+      <div class="tech-list">
+        <div class="tech-item">
+          <i class="fab fa-python tech-icon"></i>
+          <h3>Python</h3>
+          <p>I use it for data analysis, automation and web development projects.</p>
+        </div>
+        
+        <div class="tech-item">
+          <i class="fas fa-globe-americas tech-icon"></i>
+          <h3>QGIS</h3>
+          <p>I actively use it in geographic information systems and mapping projects.</p>
+        </div>
+        
+        <div class="tech-item">
+          <i class="fas fa-satellite tech-icon"></i>
+          <h3>ERDAS Imagine</h3>
+          <p>I use it in my remote sensing and image processing studies.</p>
+        </div>
+        
+        <div class="tech-item">
+          <i class="fab fa-git-alt tech-icon"></i>
+          <h3>Git/GitHub</h3>
+          <p>I use it for version control and collaboration of my projects.</p>
+        </div>
+        
+        <div class="tech-item">
+          <i class="fab fa-html5 tech-icon"></i>
+          <i class="fab fa-css3-alt tech-icon"></i>
+          <i class="fab fa-js-square tech-icon"></i>
+          <h3>HTML/CSS/JavaScript</h3>
+          <p>I use these technologies in my web development projects.</p>
+        </div>
+        
+        <div class="tech-item">
+          <i class="fas fa-database tech-icon"></i>
+          <h3>SQL</h3>
+          <p>I use it for database management and querying.</p>
+        </div>
+
+        <div class="tech-item">
+          <i class="fab fa-react tech-icon"></i>
+          <h3>React</h3>
+          <p>Building interactive user interfaces for web applications.</p>
+        </div>
+
+        <div class="tech-item">
+          <i class="fab fa-node-js tech-icon"></i>
+          <h3>Node.js</h3>
+          <p>Server-side JavaScript development for backend applications.</p>
+        </div>
+      </div>
+      
+      <img src="images/deneme_tech.jpg" alt="Technology Visual" class="main-img">
     </section>
   </main>
+  <footer>
+    <p>&copy; 2025 Arca Aldıkaçtı. All rights reserved.</p>
+  </footer>
 </body>
 </html>
