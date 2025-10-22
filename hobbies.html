@@ -1,29 +1,58 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hobilerim | Arca Aldıkaçtı</title>
+  <title>Hobbies | Arca Aldıkaçtı</title>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Hobilerim</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="about.html">Hakkımda</a></li>
-        <li><a href="hobbies.html" class="active">Hobilerim</a></li>
-        <li><a href="technologies.html">Teknolojiler</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <h1>Arca Aldıkaçtı</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="hobbies.html" class="active">Hobbies</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main>
     <section>
-      <h2>Boş zamanlarımda neler yaparım?</h2>
-      <p>Yazılım geliştirmek, otomobil teknolojilerini araştırmak ve doğa yürüyüşleri yapmak en sevdiğim aktivitelerden bazıları.</p>
-      <img src="images/deneme_hobby.jpg" alt="Hobi Görseli" class="main-img">
+      <h2>My Hobbies</h2>
+      <p>In my free time, I enjoy activities that help me grow and learn new things. Here are some of my favorite hobbies:</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3>Software Development</h3>
+          <p>Working on web technologies and programming languages. I particularly develop projects with Python and JavaScript.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>Automotive Technologies</h3>
+          <p>Following innovations in the automotive industry and examining vehicle technologies is a great passion for me.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>Nature Hikes</h3>
+          <p>Being in nature, hiking and camping both relaxes my mind and allows me to discover new places.</p>
+        </div>
+        
+        <div class="feature-card">
+          <h3>Photography</h3>
+          <p>I enjoy taking nature and architectural photos. It improves my visual memory as well as my attention to details.</p>
+        </div>
+      </div>
+      
+      <img src="images/deneme_hobby.jpg" alt="Hobby Visual" class="main-img">
     </section>
   </main>
+  <footer>
+    <p>&copy; 2023 Arca Aldıkaçtı. All rights reserved.</p>
+  </footer>
 </body>
 </html>
