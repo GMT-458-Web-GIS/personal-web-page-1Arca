@@ -1,28 +1,219 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hakkımda | Arca Aldıkaçtı</title>
+  <title>About | Arca Aldıkaçtı</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@7.2.2/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@7.2.2/dist/ol.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Hakkımda</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Ana Sayfa</a></li>
-        <li><a href="about.html" class="active">Hakkımda</a></li>
-        <li><a href="hobbies.html">Hobilerim</a></li>
-        <li><a href="technologies.html">Teknolojiler</a></li>
-      </ul>
-    </nav>
+    <div class="header-container">
+      <h1>Arca Aldıkaçtı</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="hobbies.html">Hobbies</a></li>
+          <li><a href="technologies.html">Technologies</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main>
     <section>
-      <img src="Arca Çocukluk Foto.jpg" alt="Profil Fotoğrafı" class="profile-img">
-      <p>Ben Arca Aldıkaçtı, Hacettepe Üniversitesi Geomatik Mühendisliği öğrencisiyim. Teknoloji, otomotiv ve haritalama alanlarına ilgi duyuyorum.</p>
+      <h2>About Me</h2>
+      <img src="Arca Linkedin foto.jpg" alt="Arca Aldıkaçtı Profile Photo" class="profile-img">
+      <p>Hello, I'm Arca Aldıkaçtı, a Geomatics Engineering student at Hacettepe University. I have a strong passion for technology, automotive innovations, and spatial data analysis.</p>
+      <p>Throughout my engineering education, I've focused on combining theoretical knowledge with practical applications. I'm continuously developing my skills in geographic information systems, remote sensing, and data analysis.</p>
+      <p>In the future, I aim to develop projects in smart cities, autonomous vehicles, and sustainable development by combining my geomatics engineering knowledge with technology.</p>
+      <p>I believe that spatial data and technology have the power to transform our world, and I'm excited to be part of that transformation.</p>
+    </section>
+
+    <section>
+      <h2>My Journey on the Map</h2>
+      <div class="map-info">
+        <h3>Important Locations in My Life</h3>
+        <ul class="location-list">
+          <li><span class="location-icon birthplace"></span> <strong>Birthplace:</strong> Sivas, Turkey - Where I was born and raised</li>
+          <li><span class="location-icon university"></span> <strong>University:</strong> Hacettepe University, Beytepe Campus - Where I'm studying Geomatics Engineering</li>
+          <li><span class="location-icon visited"></span> <strong>Visited Places:</strong> Antalya, Çanakkale, Fethiye - Beautiful places I've explored in Turkey</li>
+        </ul>
+      </div>
+      
+      <div id="map" class="map-container"></div>
     </section>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Harita oluşturma
+      const map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([35.2433, 39.9334]), // Türkiye merkez
+          zoom: 6
+        })
+      });
+
+      // Marker stilleri
+      const iconStyle = (color) => new ol.style.Style({
+        image: new ol.style.Circle({
+          radius: 8,
+          fill: new ol.style.Fill({ color: color }),
+          stroke: new ol.style.Stroke({
+            color: '#fff',
+            width: 2
+          })
+        })
+      });
+
+      // Vektör katmanı oluşturma
+      const vectorLayer = new ol.layer.Vector({
+        source: new ol.source.Vector({
+          features: [
+            // Doğum yeri - Sivas
+            new ol.Feature({
+              geometry: new ol.geom.Point(ol.proj.fromLonLat([37.0167, 39.7500])),
+              name: 'Sivas - My Birthplace',
+              type: 'birthplace'
+            }),
+            // Üniversite - Hacettepe Beytepe
+            new ol.Feature({
+              geometry: new ol.geom.Point(ol.proj.fromLonLat([32.7333, 39.8667])),
+              name: 'Hacettepe University - Beytepe Campus',
+              type: 'university'
+            }),
+            // Gezilen yerler
+            new ol.Feature({
+              geometry: new ol.geom.Point(ol.proj.fromLonLat([30.7133, 36.8969])),
+              name: 'Antalya - Visited Place',
+              type: 'visited'
+            }),
+            new ol.Feature({
+              geometry: new ol.geom.Point(ol.proj.fromLonLat([26.4061, 40.1553])),
+              name: 'Çanakkale - Visited Place',
+              type: 'visited'
+            }),
+            new ol.Feature({
+              geometry: new ol.geom.Point(ol.proj.fromLonLat([29.1167, 36.6217])),
+              name: 'Fethiye - Visited Place',
+              type: 'visited'
+            })
+          ]
+        }),
+        style: function(feature) {
+          const type = feature.get('type');
+          let color = '#2ecc71'; // default - visited
+          
+          if (type === 'birthplace') color = '#e74c3c';
+          if (type === 'university') color = '#3498db';
+          
+          return iconStyle(color);
+        }
+      });
+
+      map.addLayer(vectorLayer);
+
+      // Popup overlay
+      const popup = new ol.Overlay({
+        element: document.getElementById('popup'),
+        positioning: 'bottom-center',
+        stopEvent: false,
+        offset: [0, -10]
+      });
+      map.addOverlay(popup);
+
+      // Popup elementi oluşturma
+      const popupElement = document.createElement('div');
+      popupElement.id = 'popup';
+      popupElement.className = 'ol-popup';
+      popupElement.innerHTML = '<div class="popup-content"></div>';
+      document.body.appendChild(popupElement);
+
+      const popupOverlay = new ol.Overlay({
+        element: popupElement,
+        positioning: 'bottom-center',
+        stopEvent: false
+      });
+      map.addOverlay(popupOverlay);
+
+      // Tıklama olayı
+      map.on('click', function(evt) {
+        const feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+          return feature;
+        });
+        
+        if (feature) {
+          const coordinates = feature.getGeometry().getCoordinates();
+          const name = feature.get('name');
+          
+          popupElement.querySelector('.popup-content').innerHTML = name;
+          popupOverlay.setPosition(coordinates);
+        } else {
+          popupOverlay.setPosition(undefined);
+        }
+      });
+
+      // İmleç değiştirme
+      map.on('pointermove', function(e) {
+        const pixel = map.getEventPixel(e.originalEvent);
+        const hit = map.hasFeatureAtPixel(pixel);
+        map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+      });
+    });
+  </script>
+
+  <style>
+    .ol-popup {
+      position: absolute;
+      background-color: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #cccccc;
+      bottom: 12px;
+      left: -50px;
+      min-width: 200px;
+    }
+    .ol-popup:after, .ol-popup:before {
+      top: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+    .ol-popup:after {
+      border-top-color: white;
+      border-width: 10px;
+      left: 48px;
+      margin-left: -10px;
+    }
+    .ol-popup:before {
+      border-top-color: #cccccc;
+      border-width: 11px;
+      left: 48px;
+      margin-left: -11px;
+    }
+    .popup-content {
+      text-align: center;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+  </style>
+
+  <footer>
+    <p>&copy; 2025 Arca Aldıkaçtı. All rights reserved.</p>
+  </footer>
 </body>
 </html>
